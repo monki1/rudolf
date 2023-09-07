@@ -1,16 +1,7 @@
 import { REST, Routes } from 'discord.js';
 import {config} from "dotenv";
 const { DISCORD_BOT_TOKEN, DISCORD_CLIENT_ID } = config().parsed;
-
-
-
-
-const commands = [
-    {
-        name: 'ping',
-        description: 'Replies with Pong!',
-    },
-];
+import { commands } from './commands.js';
 
 const rest = new REST({ version: '10' }).setToken(DISCORD_BOT_TOKEN);
 
