@@ -4,6 +4,7 @@ const TEST_CHANNEL_NAME = 'bot-test';
 const ONLY_TEST_CHANNEL = false;
 import remindMe from "./remindMe/remindMe.js";
 import heyRudolf from "./heyRudolf/index.js";
+import tessaract from "./tesseract/index.js";
 
 async function onMessageCreate(message) {
     console.log('messageCreate');
@@ -19,6 +20,7 @@ async function onMessageCreate(message) {
 
         await remindMe(message);
         await heyRudolf(message);
+
         const username = message.author.username;
 
 
@@ -32,15 +34,16 @@ async function onMessageCreate(message) {
 
     }
     // Check if the message has attachments
-    else if (message.attachments.size > 0) {
+    if (message.attachments.size > 0) {
         message.reply('You sent an attachment.');
+        await tessaract(message);
     }
     // Check if the message has embeds
     else if (message.embeds.length > 0) {
         message.reply('You sent an embed.');
-    } else {
-        message.reply('Your message did not contain any recognizable content.');
     }
+
+
 }
 
 export default onMessageCreate;
